@@ -1,12 +1,14 @@
 package com.hms.model;
 
+import jdk.jshell.ImportSnippet;
+
 public class Ward {
-    private String wardId;
+    private Integer wardId;
     private String name;
     private String location;
     private int bedCount;
 
-    public Ward(String wardId, String name, String location, int bedCount) {
+    public Ward(Integer wardId, String name, String location, int bedCount) {
         this.wardId = wardId;
         this.name = name;
         this.location = location;
@@ -14,11 +16,11 @@ public class Ward {
     }
 
     // Getters and Setters
-    public String getWardId() {
+    public Integer getWardId() {
         return wardId;
     }
 
-    public void setWardId(String wardId) {
+    public void setWardId(Integer wardId) {
         this.wardId = wardId;
     }
 

@@ -4,9 +4,9 @@ public class Doctor {
     private String id;
     private String name;
     private String specialty;
-    private String contact;
+    private Integer contact;
 
-    public Doctor(String id, String name, String specialty, String contact) {
+    public Doctor(String id, String name, String specialty, Integer contact) {
         this.id = id;
         this.name = name;
         this.specialty = specialty;
@@ -38,11 +38,11 @@ public class Doctor {
         this.specialty = specialty;
     }
 
-    public String getContact() {
+    public Integer getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(Integer contact) {
         this.contact = contact;
     }
 
