@@ -27,13 +27,13 @@ public class UnifiedCLI {
                 case 4 -> handleMedicationMenu();
                 case 5 -> handleWardMenu();
                 case 0 -> exit = true;
-                default -> System.out.println("Invalid choice. Try again.");
+                default -> System.out.println("Invalid choice. Try again laterg.");
             }
         }
     }
 
     private void printMainMenu() {
-        System.out.println("\n Hospital Management System");
+        System.out.println("\n Hospital Management Systems");
         System.out.println("1. Doctor Management");
         System.out.println("2. Nurse Management");
         System.out.println("3. Patient Management");
