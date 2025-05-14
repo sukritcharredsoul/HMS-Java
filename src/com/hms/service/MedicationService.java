@@ -13,7 +13,6 @@ public class MedicationService {
         medications.add(medication);
     }
 
-    // Get a list of all medications
     public List<Medication> getAllMedications() {
         return medications;
     }

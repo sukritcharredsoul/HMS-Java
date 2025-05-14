@@ -8,23 +8,23 @@ import java.util.List;
 public class NurseService {
     private final List<Nurse> nurses = new ArrayList<>();
 
-    // Add a new nurse to the list
+
     public void addNurse(Nurse nurse) {
         nurses.add(nurse);
     }
 
-    // Assign a nurse to a ward
+
     public boolean assignNurseToWard(String nurseId, String wardId) {
         for (Nurse nurse : nurses) {
             if (nurse.getId().equals(nurseId)) {
                 nurse.setAssignedWard(wardId);
-                return true;  // Successfully assigned
+                return true;
             }
         }
-        return false;  // Nurse not found
+        return false;
     }
 
-    // Retrieve a list of all nurses
+
     public List<Nurse> getAllNurses() {
         return nurses;
     }

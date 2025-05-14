@@ -13,5 +13,5 @@ public class InputValidator {
     public static boolean isValidMedicationName(String medicationName) {
         return medicationName != null && !medicationName.isEmpty();
     }
-    // Add more validations as needed
+
 }

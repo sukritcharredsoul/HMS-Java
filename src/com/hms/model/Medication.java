@@ -15,7 +15,7 @@ public class Medication {
         this.patientId = patientId;
     }
 
-    // Getters and Setters
+
     public String getMedicationId() {
         return medicationId;
     }

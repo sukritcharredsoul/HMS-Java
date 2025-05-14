@@ -2,7 +2,6 @@ package com.hms.cli;
 
 import com.hms.controller.*;
 import com.hms.model.*;
-
 import java.util.List;
 import java.util.Scanner;
 

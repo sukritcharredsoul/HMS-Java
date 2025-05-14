@@ -27,7 +27,4 @@ public class DoctorService {
         return new ArrayList<>(doctorMap.values());
     }
 
-    public List<String> getPatientsByDoctor(String doctorId) {
-        return doctorToPatientMap.getOrDefault(doctorId, new ArrayList<>());
-    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DoctorController {
     private final DoctorService doctorService = new DoctorService();
-    private final PatientService patientService = new PatientService(); // Assuming patientService is used to check if patient exists
+    private final PatientService patientService = new PatientService() ;
 
     public void addDoctor(Doctor doctor) {
         doctorService.addDoctor(doctor);

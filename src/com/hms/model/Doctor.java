@@ -13,7 +13,7 @@ public class Doctor {
         this.contact = contact;
     }
 
-    // Getters and Setters
+
     public String getId() {
         return id;
     }
