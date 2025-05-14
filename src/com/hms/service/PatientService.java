@@ -1,6 +1,8 @@
 package com.hms.service;
 
-import java.util.HashMap ;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import com.hms.model.Patient;
 
 
@@ -17,5 +19,9 @@ public class PatientService {
 
     public void removePatient(String id) {
         patientMap.remove(id);
+    }
+
+    public List<Patient> getAllPatients() {
+        return new ArrayList<>(patientMap.values());
     }
 }

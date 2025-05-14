@@ -28,4 +28,8 @@ public class NurseService {
     public List<Nurse> getAllNurses() {
         return nurses;
     }
+
+    public boolean removeNurse(String nurseId) {
+        return nurses.removeIf(nurse -> nurse.getId().equals(nurseId));
+    }
 }

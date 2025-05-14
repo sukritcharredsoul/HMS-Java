@@ -2,6 +2,7 @@ package com.hms.controller;
 
 import com.hms.model.Patient;
 import com.hms.service.PatientService;
+import java.util.List;
 
 public class PatientController {
     private final PatientService patientService = new PatientService();
@@ -16,5 +17,9 @@ public class PatientController {
 
     public void removePatient(String id) {
         patientService.removePatient(id);
+    }
+
+    public List<Patient> getAllPatients() {
+        return patientService.getAllPatients();
     }
 }

@@ -2,16 +2,22 @@ package com.hms.cli;
 
 import com.hms.controller.*;
 import com.hms.model.*;
+import com.hms.service.PatientService;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Date;
+import com.hms.util.InputValidator;
+import java.util.HashSet;
 
 public class UnifiedCLI {
     private final Scanner scanner = new Scanner(System.in);
-    private final DoctorController doctorController = new DoctorController();
+    private final PatientService patientService = new PatientService();
+    private final DoctorController doctorController = new DoctorController(patientService);
     private final NurseController nurseController = new NurseController();
     private final MedicationController medicationController = new MedicationController();
     private final PatientController patientController = new PatientController();
     private final WardController wardController = new WardController();
+    private final HashSet<String> usedPatientIds = new HashSet<>();
 
     public void start() {
         boolean exit = false;
@@ -60,6 +66,7 @@ public class UnifiedCLI {
             System.out.println("1. Add Doctor");
             System.out.println("2. Assign Doctor to Patient");
             System.out.println("3. View Doctors");
+            System.out.println("4. Delete Doctor");
             System.out.println("0. Back to Main Menu");
             System.out.print("Enter your choice: ");
 
@@ -87,12 +94,18 @@ public class UnifiedCLI {
                     String patientId = scanner.nextLine();
 
                     boolean success = doctorController.assignDoctorToPatient(doctorId, patientId);
-                    System.out.println(success ? "Doctor assigned to patient" : "Assignment failed.");
+                    System.out.println(success ? "Doctor assigned to patient successfully!" : "Assignment failed. Check IDs and try again.");
                 }
                 case 3 -> {
                     List<Doctor> doctors = doctorController.getAllDoctors();
                     if (doctors.isEmpty()) System.out.println("No doctors found.");
                     else doctors.forEach(System.out::println);
+                }
+                case 4 -> {
+                    System.out.print("Enter Doctor ID to delete: ");
+                    String id = scanner.nextLine();
+                    boolean success = doctorController.deleteDoctor(id);
+                    System.out.println(success ? "Doctor deleted successfully!" : "Doctor not found.");
                 }
                 case 0 -> back = true;
                 default -> System.out.println("Invalid choice.");
@@ -109,6 +122,7 @@ public class UnifiedCLI {
             System.out.println("1. Add Nurse");
             System.out.println("2. Assign Nurse to Ward");
             System.out.println("3. View Nurses");
+            System.out.println("4. Remove Nurse");
             System.out.println("0. Back to Main Menu");
             System.out.print("Enter your choice: ");
 
@@ -141,7 +155,13 @@ public class UnifiedCLI {
                 case 3 -> {
                     List<Nurse> nurses = nurseController.getAllNurses();
                     if (nurses.isEmpty()) System.out.println("📭 No nurses found.");
-                    else nurses.forEach(System.out::println);
+                    else nurses.forEach(nurse -> System.out.println("ID: " + nurse.getId() + ", Name: " + nurse.getName() + ", Speciality: " + nurse.getSpecialty() + ", Contact: " + nurse.getContact()));
+                }
+                case 4 -> {
+                    System.out.print("Enter Nurse ID to remove: ");
+                    String id = scanner.nextLine();
+                    boolean success = nurseController.removeNurse(id);
+                    System.out.println(success ? "Nurse removed successfully!" : "Nurse not found.");
                 }
                 case 0 -> back = true;
                 default -> System.out.println("Invalid choice.");
@@ -158,6 +178,7 @@ public class UnifiedCLI {
             System.out.println("1. Add Patient");
             System.out.println("2. View Patient by ID");
             System.out.println("3. Remove Patient");
+            System.out.println("4. View All Patients");
             System.out.println("0. Back to Main Menu");
             System.out.print("Enter your choice: ");
 
@@ -167,6 +188,11 @@ public class UnifiedCLI {
                 case 1 -> {
                     System.out.print("Enter Patient ID: ");
                     String id = scanner.nextLine().trim();
+                    System.out.println("Checking if ID is unique...");
+                    if (usedPatientIds.contains(id)) {
+                        System.out.println("Duplicate Patient ID. It should be unique.");
+                        break;
+                    }
                     System.out.print("Enter Name: ");
                     String name = scanner.nextLine().trim();
                     System.out.print("Enter Age: ");
@@ -178,6 +204,9 @@ public class UnifiedCLI {
 
                     Patient patient = new Patient(id, name, age, gender, history);
                     patientController.addPatient(patient);
+                    System.out.println("Adding ID to usedPatientIds...");
+                    usedPatientIds.add(id);
+                    System.out.println("Updated usedPatientIds: " + usedPatientIds);
                     System.out.println("✅ Patient added successfully!");
                 }
                 case 2 -> {
@@ -191,6 +220,11 @@ public class UnifiedCLI {
                     String id = scanner.nextLine().trim();
                     patientController.removePatient(id);
                     System.out.println("Patient removed (if existed).");
+                }
+                case 4 -> {
+                    List<Patient> patients = patientController.getAllPatients();
+                    if (patients.isEmpty()) System.out.println("No patients found.");
+                    else patients.forEach(System.out::println);
                 }
                 case 0 -> back = true;
                 default -> System.out.println("Invalid choice.");
@@ -217,12 +251,17 @@ public class UnifiedCLI {
                     String id = scanner.nextLine().trim();
                     System.out.print("Enter Medication Name: ");
                     String name = scanner.nextLine().trim();
+                    if (!InputValidator.isValidMedicationName(name)) {
+                        System.out.println("Invalid Medication Name. It cannot be empty.");
+                        break;
+                    }
                     System.out.print("Enter Dosage: ");
                     String dosage = scanner.nextLine().trim();
                     System.out.print("Enter Patient ID: ");
                     int patientId = Integer.parseInt(scanner.nextLine().trim());
 
-                    Medication med = new Medication(id, name, dosage, patientId);
+                    Date timeGiven = new Date();
+                    Medication med = new Medication(id, name, dosage, patientId, timeGiven);
                     medicationController.addMedication(med);
                     System.out.println("Medication added successfully!");
                 }

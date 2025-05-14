@@ -9,7 +9,11 @@ import java.util.List;
 
 public class DoctorController {
     private final DoctorService doctorService = new DoctorService();
-    private final PatientService patientService = new PatientService() ;
+    private final PatientService patientService;
+
+    public DoctorController(PatientService patientService) {
+        this.patientService = patientService;
+    }
 
     public void addDoctor(Doctor doctor) {
         doctorService.addDoctor(doctor);
@@ -27,5 +31,9 @@ public class DoctorController {
 
     public List<Doctor> getAllDoctors() {
         return doctorService.getAllDoctors();
+    }
+
+    public boolean deleteDoctor(String doctorId) {
+        return doctorService.deleteDoctor(doctorId);
     }
 }

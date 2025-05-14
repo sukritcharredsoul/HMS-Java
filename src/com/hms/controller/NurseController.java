@@ -19,4 +19,8 @@ public class NurseController {
     public List<Nurse> getAllNurses() {
         return nurseService.getAllNurses();
     }
+
+    public boolean removeNurse(String nurseId) {
+        return nurseService.removeNurse(nurseId);
+    }
 }

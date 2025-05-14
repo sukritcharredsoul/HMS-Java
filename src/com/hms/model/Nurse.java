@@ -48,6 +48,6 @@ public class Nurse {
 
     @Override
     public String toString() {
-        return "Nurse{id='" + id + "', name='" + name + "', shift='" + shift + "', assignedWard='" + assignedWard + "'}";
+        return "Nurse{id='" + id + "', name='" + name + "', Speciality='" + shift + "', assignedWard='" + assignedWard + "'}";
     }
 }
