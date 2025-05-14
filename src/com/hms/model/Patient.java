@@ -1,18 +1,16 @@
 package com.hms.model;
 
-import java.util.Date;
-
 public class Patient {
     private String id;
     private String name;
-    private Date dateOfBirth;
+    private int age;
     private String gender;
     private String medicalHistory;
 
-    public Patient(String id, String name, Date dateOfBirth, String gender, String medicalHistory) {
+    public Patient(String id, String name, int age, String gender, String medicalHistory) {
         this.id = id;
         this.name = name;
-        this.dateOfBirth = dateOfBirth;
+        this.age = age;
         this.gender = gender;
         this.medicalHistory = medicalHistory;
     }
@@ -34,12 +32,12 @@ public class Patient {
         this.name = name;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public int getAge() {
+        return age;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getGender() {
@@ -60,6 +58,12 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient{id='" + id + "', name='" + name + "', dateOfBirth=" + dateOfBirth + ", gender='" + gender + "', medicalHistory='" + medicalHistory + "'}";
+        return "Patient{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", medicalHistory='" + medicalHistory + '\'' +
+                '}';
     }
 }

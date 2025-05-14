@@ -1,18 +1,20 @@
 package com.hms.service;
 
 import com.hms.model.Medication;
-import java.util.LinkedList ;
-import java.util.HashMap;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MedicationService {
-    private final HashMap<String, LinkedList<Medication>> medicationLog = new HashMap<>();
+    private final List<Medication> medications = new ArrayList<>();
 
-    public void addMedication(String patientId, Medication medication) {
-        medicationLog.putIfAbsent(patientId, new LinkedList<>());
-        medicationLog.get(patientId).add(medication);
+
+    public void addMedication(Medication medication) {
+        medications.add(medication);
     }
 
-    public LinkedList<Medication> getMedications(String patientId) {
-        return medicationLog.getOrDefault(patientId, new LinkedList<>());
+    // Get a list of all medications
+    public List<Medication> getAllMedications() {
+        return medications;
     }
 }

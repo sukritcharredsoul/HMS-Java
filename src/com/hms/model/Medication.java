@@ -6,14 +6,12 @@ public class Medication {
     private String medicationId;
     private String name;
     private String dosage;
-    private Date timeGiven;
-    private String patientId;
+    private int patientId;
 
-    public Medication(String medicationId, String name, String dosage, Date timeGiven, String patientId) {
+    public Medication(String medicationId, String name, String dosage, int patientId) {
         this.medicationId = medicationId;
         this.name = name;
         this.dosage = dosage;
-        this.timeGiven = timeGiven;
         this.patientId = patientId;
     }
 
@@ -42,24 +40,16 @@ public class Medication {
         this.dosage = dosage;
     }
 
-    public Date getTimeGiven() {
-        return timeGiven;
-    }
-
-    public void setTimeGiven(Date timeGiven) {
-        this.timeGiven = timeGiven;
-    }
-
-    public String getPatientId() {
+    public int getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(String patientId) {
+    public void setPatientId(int patientId) {
         this.patientId = patientId;
     }
 
     @Override
     public String toString() {
-        return "Medication{medicationId='" + medicationId + "', name='" + name + "', dosage='" + dosage + "', timeGiven=" + timeGiven + ", patientId='" + patientId + "'}";
+        return "Medication{medicationId='" + medicationId + "', name='" + name + "', dosage='" + dosage + "', timeGiven="  + ", patientId='" + patientId + "'}";
     }
 }

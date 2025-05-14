@@ -1,55 +1,33 @@
 package com.hms.model;
 
-import jdk.jshell.ImportSnippet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ward {
-    private Integer wardId;
+    private String id;
     private String name;
-    private String location;
-    private int bedCount;
+    private List<String> patientIds;
 
-    public Ward(Integer wardId, String name, String location, int bedCount) {
-        this.wardId = wardId;
+    public Ward(String id, String name) {
+        this.id = id;
         this.name = name;
-        this.location = location;
-        this.bedCount = bedCount;
+        this.patientIds = new ArrayList<>();
     }
 
-    // Getters and Setters
-    public Integer getWardId() {
-        return wardId;
-    }
-
-    public void setWardId(Integer wardId) {
-        this.wardId = wardId;
+    public String getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public int getBedCount() {
-        return bedCount;
-    }
-
-    public void setBedCount(int bedCount) {
-        this.bedCount = bedCount;
+    public List<String> getPatientIds() {
+        return patientIds;
     }
 
     @Override
     public String toString() {
-        return "Ward{wardId='" + wardId + "', name='" + name + "', location='" + location + "', bedCount=" + bedCount + "}";
+        return "Ward{id='" + id + "', name='" + name + "', patients=" + patientIds + "}";
     }
 }

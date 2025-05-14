@@ -3,6 +3,8 @@ package com.hms.controller;
 import com.hms.model.Nurse;
 import com.hms.service.NurseService;
 
+import java.util.List;
+
 public class NurseController {
     private final NurseService nurseService = new NurseService();
 
@@ -10,11 +12,11 @@ public class NurseController {
         nurseService.addNurse(nurse);
     }
 
-    public Nurse getNurse(String id) {
-        return nurseService.getNurseById(id);
+    public boolean assignNurseToWard(String nurseId, String wardId) {
+        return nurseService.assignNurseToWard(nurseId, wardId);
     }
 
-    public void removeNurse(String id) {
-        nurseService.removeNurse(id);
+    public List<Nurse> getAllNurses() {
+        return nurseService.getAllNurses();
     }
 }

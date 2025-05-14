@@ -1,20 +1,31 @@
 package com.hms.controller;
 
 import com.hms.model.Doctor;
+import com.hms.model.Patient;
 import com.hms.service.DoctorService;
+import com.hms.service.PatientService;
+
+import java.util.List;
 
 public class DoctorController {
     private final DoctorService doctorService = new DoctorService();
+    private final PatientService patientService = new PatientService(); // Assuming patientService is used to check if patient exists
 
     public void addDoctor(Doctor doctor) {
         doctorService.addDoctor(doctor);
     }
 
-    public Doctor getDoctor(String id) {
-        return doctorService.getDoctorById(id);
+    public boolean assignDoctorToPatient(String doctorId, String patientId) {
+        Doctor doctor = doctorService.getDoctorById(doctorId);
+        Patient patient = patientService.getPatientById(patientId);
+
+        if (doctor != null && patient != null) {
+            return doctorService.assignDoctorToPatient(doctorId, patientId);
+        }
+        return false;
     }
 
-    public void removeDoctor(String id) {
-        doctorService.removeDoctor(id);
+    public List<Doctor> getAllDoctors() {
+        return doctorService.getAllDoctors();
     }
 }
