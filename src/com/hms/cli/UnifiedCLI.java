@@ -155,7 +155,7 @@ public class UnifiedCLI {
                 case 3 -> {
                     List<Nurse> nurses = nurseController.getAllNurses();
                     if (nurses.isEmpty()) System.out.println("📭 No nurses found.");
-                    else nurses.forEach(nurse -> System.out.println("ID: " + nurse.getId() + ", Name: " + nurse.getName() + ", Speciality: " + nurse.getSpecialty() + ", Contact: " + nurse.getContact()));
+                    else nurses.forEach(nurse -> System.out.println("ID: " + nurse.getId() + ", Name: " + nurse.getName() + ", Shift: " + nurse.getShift() + ", Assigned Ward : " + nurse.getAssignedWard()));
                 }
                 case 4 -> {
                     System.out.print("Enter Nurse ID to remove: ");
