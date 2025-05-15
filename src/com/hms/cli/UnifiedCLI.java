@@ -33,7 +33,7 @@ public class UnifiedCLI {
                 case 4 -> handleMedicationMenu();
                 case 5 -> handleWardMenu();
                 case 0 -> exit = true;
-                default -> System.out.println("Invalid choice. Try again laterg.");
+                default -> System.out.println("Invalid choice. Try again.");
             }
         }
     }
